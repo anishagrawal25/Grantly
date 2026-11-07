@@ -1,11 +1,15 @@
 import {
+  Application,
   CriterionResult,
+  DocumentId,
   IncomeBracket,
   MatchResult,
   MatchStatus,
+  MoneySummary,
   Profile,
   Scholarship,
 } from '../types';
+import { getDaysRemaining } from './dates';
 
 export const INCOME_INDEX: Record<Exclude<IncomeBracket, 'unknown'>, number> = {
   'under-2.5L': 0,
@@ -254,5 +258,85 @@ export function evaluate(
     failingCount,
     headline,
     unlockStep,
+  };
+}
+
+/**
+ * Calculates money metrics across all scholarships and applications.
+ * Pure function: deterministic summary calculation.
+ */
+export function summarize(
+  matches: MatchResult[],
+  scholarships: Scholarship[],
+  applications: Application[],
+  deadlines: Record<string, string>,
+  heldDocs: DocumentId[] = [],
+  today: Date = new Date(),
+): MoneySummary {
+  const sMap = new Map<string, Scholarship>(scholarships.map((s) => [s.id, s]));
+  const appMap = new Map<string, Application>(
+    applications.map((a) => [a.scholarshipId, a]),
+  );
+
+  let eligibleTotal = 0;
+  let unlockableTotal = 0;
+  let eligibleCount = 0;
+  let almostCount = 0;
+  let deadlinesSoon = 0;
+  const missingDocsSet = new Set<DocumentId>();
+
+  for (const match of matches) {
+    const scholarship = sMap.get(match.scholarshipId);
+    if (!scholarship) continue;
+
+    const app = appMap.get(match.scholarshipId);
+    const isApplied = app?.stage === 'applied' || app?.stage === 'awarded';
+
+    if (match.status === 'eligible') {
+      eligibleTotal += scholarship.amount;
+      eligibleCount++;
+
+      for (const doc of scholarship.requiredDocs) {
+        if (!heldDocs.includes(doc)) {
+          missingDocsSet.add(doc);
+        }
+      }
+    }
+
+    if (match.status === 'almost') {
+      unlockableTotal += scholarship.amount;
+      almostCount++;
+    }
+
+    if ((match.status === 'eligible' || match.status === 'almost') && !isApplied) {
+      const deadlineIso = deadlines[scholarship.id];
+      if (deadlineIso) {
+        const days = getDaysRemaining(deadlineIso, today);
+        if (days >= 0 && days <= 14) {
+          deadlinesSoon++;
+        }
+      }
+    }
+  }
+
+  // Calculate appliedTotal from applications that are 'applied' or 'awarded'
+  let appliedTotal = 0;
+  for (const app of applications) {
+    if (app.stage === 'applied' || app.stage === 'awarded') {
+      const sc = sMap.get(app.scholarshipId);
+      if (sc) {
+        appliedTotal += sc.amount;
+      }
+    }
+  }
+
+  return {
+    eligibleTotal,
+    unlockableTotal,
+    appliedTotal,
+    eligibleCount,
+    almostCount,
+    deadlinesSoon,
+    missingDocsCount: missingDocsSet.size,
   };
 }
