@@ -1,6 +1,8 @@
 import {
   CriterionResult,
   IncomeBracket,
+  MatchResult,
+  MatchStatus,
   Profile,
   Scholarship,
 } from '../types';
@@ -202,4 +204,55 @@ export function evaluateCriteria(
   }
 
   return results;
+}
+
+/**
+ * Evaluates a single scholarship against a profile to produce a MatchResult.
+ * Pure function: deterministic calculation of status, headline, criteria, and unlockStep.
+ */
+export function evaluate(
+  profile: Profile,
+  scholarship: Scholarship,
+): MatchResult {
+  const criteria = evaluateCriteria(profile, scholarship);
+  const failing = criteria.filter((c) => c.state === 'fail');
+  const unverified = criteria.filter((c) => c.state === 'unverified');
+  const problemCriteria = [...failing, ...unverified];
+  const failingCount = problemCriteria.length;
+
+  let status: MatchStatus = 'not-eligible';
+  let headline = '';
+  let unlockStep: string | undefined = undefined;
+
+  if (failingCount === 0) {
+    status = 'eligible';
+    const passing = criteria.filter((c) => c.state === 'pass');
+    if (passing.length > 0) {
+      const details = passing
+        .slice(0, 2)
+        .map((c) => c.detail.replace(/ ✓$/, ''))
+        .join(' · ');
+      headline = `You qualify: ${details}`;
+    } else {
+      headline = 'You qualify: All general criteria met';
+    }
+  } else if (failingCount === 1 && problemCriteria[0].closable) {
+    status = 'almost';
+    const problem = problemCriteria[0];
+    unlockStep = problem.nextStep;
+    headline = `Almost there: ${problem.detail}`;
+  } else {
+    status = 'not-eligible';
+    const firstFail = failing[0] || unverified[0];
+    headline = `Not a match: ${firstFail ? firstFail.detail : 'Criteria not met'}`;
+  }
+
+  return {
+    scholarshipId: scholarship.id,
+    status,
+    criteria,
+    failingCount,
+    headline,
+    unlockStep,
+  };
 }
