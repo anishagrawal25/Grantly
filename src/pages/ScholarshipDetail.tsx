@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { CriteriaList } from '../components/scholarships/CriteriaList';
+import { DocChecklist } from '../components/scholarships/DocChecklist';
 import { MatchBadge } from '../components/scholarships/MatchBadge';
 import { DeadlinePill } from '../components/tracker/DeadlinePill';
 import { Button } from '../components/ui/Button';
@@ -106,6 +107,56 @@ export default function ScholarshipDetail() {
           criteria={match.criteria}
           onUnlockClick={() => navigate('/unlock')}
         />
+      </Card>
+
+      {/* Required Documents Section */}
+      <Card className="p-6 sm:p-8 bg-surface border-line shadow-card">
+        <div className="mb-6">
+          <span className="text-xs font-bold text-brand-700 uppercase tracking-wider font-display">
+            Application Portfolio
+          </span>
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-ink-900 mt-0.5">
+            Required Documents
+          </h2>
+          <p className="text-xs sm:text-sm text-ink-500 mt-1">
+            Certificates and identification needed for official portal verification.
+          </p>
+        </div>
+
+        <DocChecklist requiredDocs={scholarship.requiredDocs} />
+      </Card>
+
+      {/* How to Apply Section */}
+      <Card className="p-6 sm:p-8 bg-surface border-line shadow-card">
+        <div className="mb-6">
+          <span className="text-xs font-bold text-brand-700 uppercase tracking-wider font-display">
+            Official Roadmap
+          </span>
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-ink-900 mt-0.5">
+            How to Apply
+          </h2>
+          <p className="text-xs sm:text-sm text-ink-500 mt-1">
+            Follow these verified submission steps on the provider's official portal.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {scholarship.howToApply.map((stepText, index) => (
+            <div
+              key={index}
+              className="flex items-start gap-4 p-4 rounded-xl bg-canvas/60 border border-line"
+            >
+              <div className="w-8 h-8 rounded-full bg-forest-900 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 shadow-xs">
+                {index + 1}
+              </div>
+              <div className="flex-1">
+                <p className="text-sm sm:text-base text-ink-900 leading-relaxed">
+                  {stepText}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </Card>
     </div>
   );
