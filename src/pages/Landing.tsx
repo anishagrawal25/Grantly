@@ -161,7 +161,7 @@ export default function Landing() {
               </div>
 
               {/* Sample Amount */}
-              <div className="font-money text-5xl sm:text-6xl font-bold tracking-tight text-white mb-2 tabular-nums">
+              <div className="font-money text-3xl min-[360px]:text-4xl sm:text-6xl font-bold tracking-tight text-white mb-2 tabular-nums">
                 ₹4,01,000
               </div>
 

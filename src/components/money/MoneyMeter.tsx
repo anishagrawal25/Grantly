@@ -66,11 +66,11 @@ export const MoneyMeter: React.FC<MoneyMeterProps> = ({
 
         {/* Hero Number Display */}
         <div className="mb-4">
-          <div className="flex items-baseline gap-1 sm:gap-2">
-            <span className="font-money text-4xl sm:text-6xl lg:text-7xl font-bold text-white/90 select-none">
+          <div className="flex items-baseline gap-1 sm:gap-2 flex-wrap">
+            <span className="font-money text-3xl min-[360px]:text-4xl sm:text-6xl lg:text-7xl font-bold text-white/90 select-none">
               ₹
             </span>
-            <span className="font-money text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-white tabular-nums leading-none">
+            <span className="font-money text-4xl min-[360px]:text-5xl min-[480px]:text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-white tabular-nums leading-none">
               {formatNumberIndian(value)}
             </span>
           </div>
