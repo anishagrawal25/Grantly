@@ -120,3 +120,4 @@ export const CriteriaList: React.FC<CriteriaListProps> = ({
     </div>
   );
 };
+
