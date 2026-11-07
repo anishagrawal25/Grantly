@@ -1,7 +1,10 @@
 import { useMemo } from 'react';
 import { FilterBar } from '../components/scholarships/FilterBar';
+import { MobileFilterDrawer } from '../components/scholarships/MobileFilterDrawer';
 import { ScholarshipCard } from '../components/scholarships/ScholarshipCard';
 import { PageHeader } from '../components/layout/PageHeader';
+import { Button } from '../components/ui/Button';
+import { EmptyState } from '../components/ui/EmptyState';
 import { useMatches } from '../hooks/useMatches';
 import { getDaysRemaining } from '../lib/dates';
 import { useAppStore } from '../store/useAppStore';
@@ -35,7 +38,7 @@ export default function Discover() {
     };
   }, [matches, scholarships.length]);
 
-  // Apply filters and sorting
+  // Apply filters
   const filteredScholarships = useMemo(() => {
     return scholarships.filter((s) => {
       const match = byId[s.id]?.match;
@@ -135,14 +138,24 @@ export default function Discover() {
 
   return (
     <div className="space-y-6 sm:space-y-8">
-      {/* Header */}
+      {/* Header with Mobile Filter Trigger */}
       <PageHeader
         title="Discover Scholarships"
-        subtitle={`Showing ${sortedScholarships.length} of ${scholarships.length} grants matched to your verified eligibility`}
+        subtitle={`Showing ${sortedScholarships.length} of ${scholarships.length} grants matched to your verified profile`}
+        action={
+          <div className="lg:hidden w-full sm:w-auto">
+            <MobileFilterDrawer
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              onReset={resetFilters}
+              counts={counts}
+            />
+          </div>
+        }
       />
 
-      {/* Sticky Filter Bar */}
-      <div className="sticky top-16 z-30 bg-canvas/95 backdrop-blur-md py-3 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 border-b border-line shadow-xs">
+      {/* Desktop Filter Bar (hidden on mobile, sticky on desktop) */}
+      <div className="hidden lg:block sticky top-16 z-30 bg-canvas/95 backdrop-blur-md py-3 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 border-b border-line shadow-xs">
         <FilterBar
           filters={filters}
           onFilterChange={handleFilterChange}
@@ -151,22 +164,37 @@ export default function Discover() {
         />
       </div>
 
-      {/* Results Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {sortedScholarships.map((scholarship: Scholarship) => {
-          const match = byId[scholarship.id]?.match;
-          if (!match) return null;
+      {/* Results Grid or Empty State */}
+      {sortedScholarships.length === 0 ? (
+        <div className="py-12 flex justify-center">
+          <EmptyState
+            illustration="search"
+            title="No matching scholarships found"
+            description="No scholarships match your active filter criteria. Try clearing search keywords, adjusting minimum amounts, or resetting all filters."
+            action={
+              <Button variant="primary" onClick={resetFilters}>
+                Reset All Filters
+              </Button>
+            }
+          />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {sortedScholarships.map((scholarship: Scholarship) => {
+            const match = byId[scholarship.id]?.match;
+            if (!match) return null;
 
-          return (
-            <ScholarshipCard
-              key={scholarship.id}
-              scholarship={scholarship}
-              match={match}
-              deadlineIso={deadlines[scholarship.id]}
-            />
-          );
-        })}
-      </div>
+            return (
+              <ScholarshipCard
+                key={scholarship.id}
+                scholarship={scholarship}
+                match={match}
+                deadlineIso={deadlines[scholarship.id]}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
