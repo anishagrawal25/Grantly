@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   CalendarClock,
   Clock,
@@ -20,6 +21,7 @@ import { useAppStore } from '../store/useAppStore';
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
   const profile = useAppStore((state) => state.profile);
   const heldDocs = useAppStore((state) => state.heldDocs);
   const applications = useAppStore((state) => state.applications);
@@ -208,56 +210,76 @@ export default function Dashboard() {
             }
           />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: shouldReduceMotion ? 0 : 0.04,
+                },
+              },
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
+          >
             {eligibleScholarships.map((s) => {
               const match = byId[s.id]?.match;
               return (
-                <Card
+                <motion.div
                   key={s.id}
-                  interactive
-                  onClick={() => navigate(`/scholarship/${s.id}`)}
-                  className="p-5 flex flex-col justify-between border-line hover:border-brand-500/50"
+                  variants={{
+                    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.22 } },
+                  }}
                 >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <span className="text-[11px] font-semibold text-brand-700 bg-brand-50 border border-brand-100 px-2 py-0.5 rounded-full">
-                        {s.providerType}
-                      </span>
-                      <span className="text-[11px] text-ink-500 flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-ink-500" />
-                        {s.deadlineInDays}d left
-                      </span>
+                  <Card
+                    interactive
+                    onClick={() => navigate(`/scholarship/${s.id}`)}
+                    className="p-5 flex flex-col justify-between border-line hover:border-brand-500/50 h-full"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <span className="text-[11px] font-semibold text-brand-700 bg-brand-50 border border-brand-100 px-2 py-0.5 rounded-full">
+                          {s.providerType}
+                        </span>
+                        <span className="text-[11px] text-ink-500 flex items-center gap-1">
+                          <Clock className="w-3 h-3 text-ink-500" />
+                          {s.deadlineInDays}d left
+                        </span>
+                      </div>
+
+                      <h3 className="text-base font-bold text-ink-900 line-clamp-1 mb-1">
+                        {s.name}
+                      </h3>
+                      <p className="text-xs text-ink-500 mb-3">{s.provider}</p>
+
+                      <div className="font-money text-2xl font-bold text-forest-900 mb-3 tabular-nums">
+                        {formatINR(s.amount)}
+                        <span className="text-xs font-normal text-ink-500 font-sans ml-1">
+                          / year
+                        </span>
+                      </div>
+
+                      <p className="text-xs text-brand-700 bg-brand-50/70 p-2.5 rounded-xl border border-brand-100 line-clamp-2">
+                        {match?.headline || 'You qualify for this grant'}
+                      </p>
                     </div>
 
-                    <h3 className="text-base font-bold text-ink-900 line-clamp-1 mb-1">
-                      {s.name}
-                    </h3>
-                    <p className="text-xs text-ink-500 mb-3">{s.provider}</p>
-
-                    <div className="font-money text-2xl font-bold text-forest-900 mb-3 tabular-nums">
-                      {formatINR(s.amount)}
-                      <span className="text-xs font-normal text-ink-500 font-sans ml-1">
-                        / year
+                    <div className="pt-4 mt-4 border-t border-line flex items-center justify-between">
+                      <span className="text-xs text-ink-500">
+                        {s.requiredDocs.length} documents required
+                      </span>
+                      <span className="text-xs font-semibold text-brand-600">
+                        View details →
                       </span>
                     </div>
-
-                    <p className="text-xs text-brand-700 bg-brand-50/70 p-2.5 rounded-xl border border-brand-100 line-clamp-2">
-                      {match?.headline || 'You qualify for this grant'}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 mt-4 border-t border-line flex items-center justify-between">
-                    <span className="text-xs text-ink-500">
-                      {s.requiredDocs.length} documents required
-                    </span>
-                    <span className="text-xs font-semibold text-brand-600">
-                      View details →
-                    </span>
-                  </div>
-                </Card>
+                  </Card>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

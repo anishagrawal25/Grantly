@@ -59,6 +59,14 @@ export default function App() {
             }
           />
           <Route
+            path="/scholarships/:id"
+            element={
+              <ProtectedRoute>
+                <ScholarshipDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/unlock"
             element={
               <ProtectedRoute>

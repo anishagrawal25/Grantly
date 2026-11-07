@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { AlertCircle, Check, FileCheck, ShieldCheck } from 'lucide-react';
 import clsx from 'clsx';
 import { DocumentTile } from '../components/wallet/DocumentTile';
@@ -14,6 +15,7 @@ import { useAppStore } from '../store/useAppStore';
 import { DocumentId, IncomeBracket } from '../types';
 
 export default function Wallet() {
+  const shouldReduceMotion = useReducedMotion();
   const profile = useAppStore((state) => state.profile);
   const setProfile = useAppStore((state) => state.setProfile);
   const heldDocs = useAppStore((state) => state.heldDocs);
@@ -182,19 +184,39 @@ export default function Wallet() {
         <h3 className="text-sm font-bold text-ink-900 uppercase tracking-wider font-display">
           All Application Documents ({totalDocs})
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: shouldReduceMotion ? 0 : 0.03,
+              },
+            },
+          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
+        >
           {MASTER_DOCUMENTS.map((doc) => (
-            <DocumentTile
+            <motion.div
               key={doc.id}
-              id={doc.id}
-              label={doc.label}
-              hint={doc.hint}
-              isHeld={heldDocs.includes(doc.id)}
-              neededCount={neededDocCounts[doc.id] || 0}
-              onToggle={handleToggle}
-            />
+              variants={{
+                hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+              }}
+            >
+              <DocumentTile
+                id={doc.id}
+                label={doc.label}
+                hint={doc.hint}
+                isHeld={heldDocs.includes(doc.id)}
+                neededCount={neededDocCounts[doc.id] || 0}
+                onToggle={handleToggle}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Privacy Notice */}

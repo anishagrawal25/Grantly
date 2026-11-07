@@ -51,7 +51,7 @@ export const TrackerCard: React.FC<TrackerCardProps> = ({
               {scholarship.provider}
             </span>
             <Link
-              to={`/scholarships/${scholarship.id}`}
+              to={`/scholarship/${scholarship.id}`}
               className="text-sm font-bold text-forest-900 hover:text-brand-700 transition-colors line-clamp-2 leading-snug group flex items-baseline gap-1"
             >
               <span>{scholarship.name}</span>

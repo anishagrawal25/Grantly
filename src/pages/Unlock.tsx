@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Check, Info, KeyRound, Sparkles } from 'lucide-react';
 import clsx from 'clsx';
 import { UnlockCard, UnlockGroup } from '../components/money/UnlockCard';
@@ -17,6 +18,7 @@ import { IncomeBracket } from '../types';
 
 export default function Unlock() {
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
   const profile = useAppStore((state) => state.profile);
   const setProfile = useAppStore((state) => state.setProfile);
   const setDocHeld = useAppStore((state) => state.setDocHeld);
@@ -176,15 +178,35 @@ export default function Unlock() {
           />
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: shouldReduceMotion ? 0 : 0.05,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
           {unlockGroups.map((group, idx) => (
-            <UnlockCard
+            <motion.div
               key={idx}
-              group={group}
-              onActionClick={handleActionClick}
-            />
+              variants={{
+                hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.22 } },
+              }}
+            >
+              <UnlockCard
+                group={group}
+                onActionClick={handleActionClick}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
 
       {/* Disclaimer */}

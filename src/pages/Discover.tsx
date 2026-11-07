@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { FilterBar } from '../components/scholarships/FilterBar';
 import { MobileFilterDrawer } from '../components/scholarships/MobileFilterDrawer';
 import { ScholarshipCard } from '../components/scholarships/ScholarshipCard';
@@ -11,6 +12,7 @@ import { useAppStore } from '../store/useAppStore';
 import { FilterState, MatchStatus, Scholarship } from '../types';
 
 export default function Discover() {
+  const shouldReduceMotion = useReducedMotion();
   const filters = useAppStore((state) => state.filters);
   const setFilters = useAppStore((state) => state.setFilters);
   const resetFilters = useAppStore((state) => state.resetFilters);
@@ -179,21 +181,41 @@ export default function Discover() {
           />
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: shouldReduceMotion ? 0 : 0.04,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
           {sortedScholarships.map((scholarship: Scholarship) => {
             const match = byId[scholarship.id]?.match;
             if (!match) return null;
 
             return (
-              <ScholarshipCard
+              <motion.div
                 key={scholarship.id}
-                scholarship={scholarship}
-                match={match}
-                deadlineIso={deadlines[scholarship.id]}
-              />
+                variants={{
+                  hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.22 } },
+                }}
+              >
+                <ScholarshipCard
+                  scholarship={scholarship}
+                  match={match}
+                  deadlineIso={deadlines[scholarship.id]}
+                />
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       )}
     </div>
   );
