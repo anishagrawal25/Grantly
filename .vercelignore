@@ -1,0 +1,5 @@
+# Vercel deployment ignore
+node_modules
+.git
+.gemini
+*.log
