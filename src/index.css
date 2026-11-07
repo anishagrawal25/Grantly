@@ -1,12 +1,29 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #F6F3EC;
+    color: #14201B;
+    min-height: 100vh;
+  }
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  
+  /* Hero subtle grain overlay */
+  .bg-noise {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 0);
+    background-size: 16px 16px;
+  }
 }
-
