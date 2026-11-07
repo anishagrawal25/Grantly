@@ -1,11 +1,14 @@
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Compass } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { useMatches } from '../hooks/useMatches';
 import { RoadmapStepper } from '../components/tracker/RoadmapStepper';
+import { DeadlineRadar, RadarFilter } from '../components/tracker/DeadlineRadar';
 import { KanbanBoard } from '../components/tracker/KanbanBoard';
 import { EmptyState } from '../components/ui/EmptyState';
 import { Button } from '../components/ui/Button';
+import { Toast, ToastMessage } from '../components/ui/Toast';
 import { ApplicationStage } from '../types';
 
 export default function Tracker() {
@@ -17,12 +20,75 @@ export default function Tracker() {
   const removeApplication = useAppStore((state) => state.removeApplication);
   const { byId } = useMatches();
 
+  const [radarFilter, setRadarFilter] = useState<RadarFilter>('all');
+  const [toast, setToast] = useState<ToastMessage | null>(null);
+  const toastTimeoutRef = useRef<number | null>(null);
+
+  const showToast = (message: Omit<ToastMessage, 'id'>) => {
+    if (toastTimeoutRef.current) {
+      window.clearTimeout(toastTimeoutRef.current);
+    }
+    const newToast: ToastMessage = {
+      ...message,
+      id: String(Date.now()),
+    };
+    setToast(newToast);
+    toastTimeoutRef.current = window.setTimeout(() => {
+      setToast(null);
+    }, 3500);
+  };
+
   const handleStageChange = (scholarshipId: string, stage: ApplicationStage) => {
     setStage(scholarshipId, stage);
+
+    const scholarshipName = byId[scholarshipId]?.scholarship.name || 'Scholarship';
+
+    switch (stage) {
+      case 'applied':
+        showToast({
+          tone: 'success',
+          title: 'Marked as applied 🎉',
+          message: `${scholarshipName} submitted! Keep following up on portal notifications.`,
+        });
+        break;
+      case 'awarded':
+        showToast({
+          tone: 'success',
+          title: 'Congratulations! 🏆',
+          message: `${scholarshipName} awarded! Funding is counted in your Applied total.`,
+        });
+        break;
+      case 'preparing':
+        showToast({
+          tone: 'info',
+          title: 'Moved to Preparing',
+          message: 'Gather and verify your documents before submitting.',
+        });
+        break;
+      case 'saved':
+        showToast({
+          tone: 'info',
+          title: 'Moved to Saved',
+          message: `${scholarshipName} kept in your saved list.`,
+        });
+        break;
+      case 'rejected':
+        showToast({
+          tone: 'warning',
+          title: 'Application Closed',
+          message: 'Opportunity marked as not selected. Keep going—more options are open!',
+        });
+        break;
+    }
   };
 
   const handleRemove = (scholarshipId: string) => {
     removeApplication(scholarshipId);
+    showToast({
+      tone: 'info',
+      title: 'Application Removed',
+      message: 'Removed from your application tracker.',
+    });
   };
 
   return (
@@ -72,15 +138,31 @@ export default function Tracker() {
           />
         </div>
       ) : (
-        <KanbanBoard
-          applications={applications}
-          scholarshipsById={byId}
-          deadlines={deadlines}
-          heldDocs={heldDocs}
-          onStageChange={handleStageChange}
-          onRemove={handleRemove}
-        />
+        <>
+          {/* Deadline Radar */}
+          <DeadlineRadar
+            applications={applications}
+            deadlines={deadlines}
+            scholarshipsById={byId}
+            activeFilter={radarFilter}
+            onSelectFilter={setRadarFilter}
+          />
+
+          {/* Kanban Board */}
+          <KanbanBoard
+            applications={applications}
+            scholarshipsById={byId}
+            deadlines={deadlines}
+            heldDocs={heldDocs}
+            radarFilter={radarFilter}
+            onStageChange={handleStageChange}
+            onRemove={handleRemove}
+          />
+        </>
       )}
+
+      {/* Toast Notifications */}
+      <Toast toast={toast} onDismiss={() => setToast(null)} />
     </div>
   );
 }

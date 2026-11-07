@@ -4,12 +4,14 @@ import { Application, ApplicationStage, DocumentId, MatchResult, Scholarship } f
 import { formatINR } from '../../lib/money';
 import { getDaysRemaining } from '../../lib/dates';
 import { TrackerCard } from './TrackerCard';
+import { RadarFilter } from './DeadlineRadar';
 
 export interface KanbanBoardProps {
   applications: Application[];
   scholarshipsById: Record<string, { scholarship: Scholarship; match: MatchResult }>;
   deadlines: Record<string, string>;
   heldDocs: DocumentId[];
+  radarFilter?: RadarFilter;
   onStageChange: (scholarshipId: string, stage: ApplicationStage) => void;
   onRemove: (scholarshipId: string) => void;
 }
@@ -58,15 +60,31 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
   scholarshipsById,
   deadlines,
   heldDocs,
+  radarFilter = 'all',
   onStageChange,
   onRemove,
 }) => {
   const [mobileTab, setMobileTab] = useState<string>('saved');
 
-  // Helper to sort applications by deadline
+  // Helper to filter and sort applications by deadline
   const getSortedAppsForStages = (stages: ApplicationStage[]) => {
     return applications
-      .filter((app) => stages.includes(app.stage))
+      .filter((app) => {
+        if (!stages.includes(app.stage)) return false;
+        if (radarFilter === 'all') return true;
+
+        const item = scholarshipsById[app.scholarshipId];
+        if (!item) return true;
+
+        const days = deadlines[app.scholarshipId]
+          ? getDaysRemaining(deadlines[app.scholarshipId])
+          : item.scholarship.deadlineInDays;
+
+        if (radarFilter === 'week') return days >= 0 && days <= 7;
+        if (radarFilter === 'month') return days > 7 && days <= 30;
+        if (radarFilter === 'later') return days > 30;
+        return true;
+      })
       .sort((a, b) => {
         const itemA = scholarshipsById[a.scholarshipId];
         const itemB = scholarshipsById[b.scholarshipId];
