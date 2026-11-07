@@ -38,3 +38,4 @@ export function formatINRCompact(amount: number): string {
   }
   return `₹${amount}`;
 }
+

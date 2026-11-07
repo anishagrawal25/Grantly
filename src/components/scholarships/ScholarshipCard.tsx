@@ -142,3 +142,4 @@ export const ScholarshipCard: React.FC<ScholarshipCardProps> = ({
     </Card>
   );
 };
+

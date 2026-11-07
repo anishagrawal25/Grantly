@@ -52,3 +52,4 @@ export const MASTER_DOCUMENTS: DocumentType[] = [
     hint: 'Issued on current college/school letterhead signed by the principal',
   },
 ];
+

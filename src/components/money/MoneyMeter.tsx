@@ -195,3 +195,4 @@ export const MoneyMeter: React.FC<MoneyMeterProps> = ({
     </motion.div>
   );
 };
+

@@ -39,3 +39,4 @@ export const MatchBadge: React.FC<MatchBadgeProps> = ({
     </Badge>
   );
 };
+

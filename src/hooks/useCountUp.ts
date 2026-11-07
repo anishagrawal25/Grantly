@@ -76,3 +76,4 @@ export function useCountUp(
 
   return { value: displayValue, isUpdating };
 }
+

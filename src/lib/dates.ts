@@ -35,3 +35,4 @@ export function getDeadlineUrgency(daysRemaining: number): 'safe' | 'warning' | 
   if (daysRemaining <= 30) return 'warning';
   return 'safe';
 }
+

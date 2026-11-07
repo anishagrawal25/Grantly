@@ -134,3 +134,4 @@ export interface FilterState {
   status: MatchStatus | 'all';
   sort: 'match' | 'amount' | 'deadline';
 }
+
