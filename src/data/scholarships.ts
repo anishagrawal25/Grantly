@@ -1,6 +1,7 @@
 import { Scholarship } from '../types';
 
-export const SCHOLARSHIPS_PART1: Scholarship[] = [
+export const SCHOLARSHIPS: Scholarship[] = [
+  // 1. Maharashtra EBC Technical
   {
     id: 'maha-ebc-eng',
     name: 'Rajarshi Chhatrapati Shahu Maharaj EBC Assistance',
@@ -31,10 +32,11 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
       'Upload verified Tehsil income certificate and previous year grade sheet.',
       'Submit application and submit physical receipt to college scholarship desk.',
     ],
-    deadlineInDays: 12, // within 14 days
+    deadlineInDays: 12,
     officialUrl: 'https://mahadbt.maharashtra.gov.in',
     tags: ['Maharashtra', 'Engineering', 'Tuition', 'OBC', 'State'],
   },
+  // 2. Pragati Girls in STEM
   {
     id: 'pragati-girls-tech',
     name: 'AICTE Pragati Scholarship for Girl Engineers',
@@ -63,10 +65,11 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
       'Fill family income and entrance exam details verified by institute.',
       'Track institute nodal officer verification status on your dashboard.',
     ],
-    deadlineInDays: 8, // within 14 days
+    deadlineInDays: 8,
     officialUrl: 'https://www.aicte-india.org',
     tags: ['AICTE', 'Girls in STEM', 'Central', 'Engineering'],
   },
+  // 3. Savitribai Phule OBC
   {
     id: 'savitribai-phule-obc',
     name: 'Savitribai Phule Special Grant for OBC Girls',
@@ -99,6 +102,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://mahadbt.maharashtra.gov.in',
     tags: ['Maharashtra', 'OBC', 'Women', 'State Welfare'],
   },
+  // 4. Tata First Generation
   {
     id: 'tata-firstgen-tech',
     name: 'Tata Trusts First-Generation Higher Education Fellowship',
@@ -130,6 +134,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://www.tatatrusts.org',
     tags: ['First Generation', 'Tata', 'Need-Based', 'Undergraduate'],
   },
+  // 5. Infosys STEM Stars
   {
     id: 'infosys-stem-women',
     name: 'Infosys Foundation STEM Stars Scholarship',
@@ -162,6 +167,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://www.infosys.org',
     tags: ['STEM', 'Engineering', 'Women in Tech', 'Infosys'],
   },
+  // 6. Reliance Foundation Merit (Almost #1)
   {
     id: 'reliance-ug-merit',
     name: 'Reliance Foundation Undergraduate Merit Scholarship',
@@ -192,6 +198,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://www.reliancefoundation.org',
     tags: ['Merit', 'Foundation', 'Undergraduate', 'National'],
   },
+  // 7. Central Sector CSSS (Almost #2)
   {
     id: 'central-sector-ug',
     name: 'Central Sector Scheme of Scholarships (CSSS)',
@@ -218,10 +225,11 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
       'Upload 12th board marksheet and authentic revenue income affidavit.',
       'Ensure bank account is Aadhaar seeded for PFMS direct credit.',
     ],
-    deadlineInDays: 11, // within 14 days
+    deadlineInDays: 11,
     officialUrl: 'https://scholarships.gov.in',
     tags: ['Central', 'Ministry of Education', 'Undergraduate'],
   },
+  // 8. HDFC Parivartan
   {
     id: 'hdfc-parivartan-ug',
     name: 'HDFC Bank Parivartan ECSS Programme',
@@ -252,6 +260,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://www.hdfcbank.com',
     tags: ['HDFC', 'CSR', 'Need-Based', 'Undergraduate'],
   },
+  // 9. Cyient Foundation
   {
     id: 'cyient-eng-empower',
     name: 'Cyient Foundation Engineering Fellowship',
@@ -284,6 +293,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://www.cyient.com',
     tags: ['Engineering', 'Women', 'Fellowship', 'Cyient'],
   },
+  // 10. Sitaram Jindal Foundation
   {
     id: 'sitaram-jindal-eng',
     name: 'Sitaram Jindal Technical Studies Grant',
@@ -315,6 +325,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://www.sitaramjindalfoundation.org',
     tags: ['Technical', 'Engineering', 'Foundation', 'Stipend'],
   },
+  // 11. Dr Ambedkar Post-Matric SC
   {
     id: 'dr-ambedkar-postmatric',
     name: 'Dr. Ambedkar Post-Matric SC Educational Aid',
@@ -345,6 +356,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://socialjustice.gov.in',
     tags: ['SC Welfare', 'Central Govt', 'Full Fee Waiver'],
   },
+  // 12. National Tribal Higher Education
   {
     id: 'national-overseas-st',
     name: 'National Tribal Higher Education Fellowship',
@@ -375,6 +387,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://tribal.nic.in',
     tags: ['ST Welfare', 'Tribal Affairs', 'Higher Education'],
   },
+  // 13. Enable India PwD
   {
     id: 'enable-india-pwd',
     name: 'Enable India PwD Technology Empowerment Grant',
@@ -405,6 +418,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://www.enableindia.org',
     tags: ['PwD', 'Disability', 'Inclusion', 'Assistive Tech'],
   },
+  // 14. Karnataka Vidyasiri
   {
     id: 'karnataka-vidyasiri',
     name: 'Karnataka State Vidyasiri Backward Classes Award',
@@ -435,6 +449,7 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://ssp.karnataka.gov.in',
     tags: ['Karnataka', 'OBC', 'Hostel', 'State'],
   },
+  // 15. Aditya Birla Premier Merit
   {
     id: 'aditya-birla-merit',
     name: 'Aditya Birla Premier Academic Leadership Award',
@@ -465,6 +480,473 @@ export const SCHOLARSHIPS_PART1: Scholarship[] = [
     officialUrl: 'https://www.adityabirla.com',
     tags: ['Merit', 'Leadership', 'Premier', 'Private'],
   },
+  // 16. Santoor Women
+  {
+    id: 'santoor-women-scholarship',
+    name: 'Santoor Women Higher Education Scholarship',
+    provider: 'Azim Premji Foundation & Wipro',
+    providerType: 'Foundation',
+    amount: 40000,
+    shortDescription: 'Financial grant encouraging young women who passed government schools to complete humanities or commerce degrees.',
+    plainSummary: 'Offered to female students who attended state government schools and enrolled in non-technical undergraduate programs such as BA, B.Sc, or B.Com.',
+    eligibility: {
+      genders: ['Female'],
+      courses: ['Arts & Science', 'Commerce'],
+      levels: ['Undergraduate'],
+      maxIncomeBracket: '5L-8L',
+      minMarks: 60,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'marksheet',
+      'admission-proof',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Download application form from the Santoor scholarship webpage.',
+      'Submit proof of schooling from state government high schools.',
+      'Attach admission fee receipt from degree college.',
+      'Disbursements are remitted directly every semester upon passing.',
+    ],
+    deadlineInDays: 48,
+    officialUrl: 'https://www.santoorscholarship.com',
+    tags: ['Women', 'Humanities', 'Wipro', 'Undergraduate'],
+  },
+  // 17. L'Oréal For Women in Science (Almost #3)
+  {
+    id: 'loreal-for-women-science',
+    name: "L'Oréal India For Young Women In Science Fellowship",
+    provider: "L'Oréal India Foundation",
+    providerType: 'Private',
+    amount: 50000,
+    shortDescription: 'Dedicated financial grant helping young women pursue scientific and engineering undergraduate degrees.',
+    plainSummary: 'Provides financial backing to female students pursuing science, biotechnology, and technology courses in recognized Indian institutions.',
+    eligibility: {
+      genders: ['Female'],
+      levels: ['Undergraduate'],
+      maxIncomeBracket: '5L-8L',
+      minMarks: 76,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'income-certificate',
+      'marksheet',
+      'passport-photo',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Create account on the LOreal India scholarship portal.',
+      'Submit verified marksheet with high science/math score.',
+      'Write short essay on your prospective career vision in science.',
+      'Attend online video interview round if shortlisted.',
+    ],
+    deadlineInDays: 22,
+    officialUrl: 'https://www.loreal.com',
+    tags: ['Science', 'Women', 'Private CSR', 'Undergraduate'],
+  },
+  // 18. Sitaram Jindal Polytechnic Diploma
+  {
+    id: 'sitaram-jindal-diploma',
+    name: 'Sitaram Jindal Polytechnic Technical Diploma Award',
+    provider: 'Sitaram Jindal Foundation',
+    providerType: 'Foundation',
+    amount: 18000,
+    shortDescription: 'Stipend supporting diploma and polytechnic students undergoing vocational technical courses.',
+    plainSummary: 'Created specifically for students pursuing 3-year polytechnic engineering and technology diplomas to ease lab and course fees.',
+    eligibility: {
+      levels: ['Diploma'],
+      maxIncomeBracket: '2.5L-5L',
+      minMarks: 60,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'income-certificate',
+      'marksheet',
+      'bonafide-certificate',
+    ],
+    howToApply: [
+      'Collect official Annexure form from college polytechnic desk.',
+      'Have institution principal sign and affix college seal.',
+      'Enclose family income proof and previous semester mark sheets.',
+      'Send hard copy via speed post to Jindal Foundation office.',
+    ],
+    deadlineInDays: 85,
+    officialUrl: 'https://www.sitaramjindalfoundation.org',
+    tags: ['Diploma', 'Polytechnic', 'Technical', 'Vocational'],
+  },
+  // 19. ONGC SC/ST Engineering
+  {
+    id: 'ongc-merit-scst',
+    name: 'ONGC Engineering Scholarship for SC/ST Scholars',
+    provider: 'Oil and Natural Gas Corporation (ONGC)',
+    providerType: 'Government',
+    amount: 48000,
+    shortDescription: 'Public sector undertaking fellowship for meritorious SC and ST undergraduate engineering students.',
+    plainSummary: 'Funded by ONGC to groom technical leadership among Scheduled Caste and Scheduled Tribe undergraduate engineering students in core branches.',
+    eligibility: {
+      categories: ['SC', 'ST'],
+      courses: ['Engineering'],
+      levels: ['Undergraduate'],
+      maxIncomeBracket: '5L-8L',
+      minMarks: 60,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'caste-certificate',
+      'income-certificate',
+      'marksheet',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Access the ONGC CSR scholarship portal during online registration.',
+      'Enter category certificate issue number and Tehsil authority details.',
+      'Submit certified first or second year engineering grade card.',
+      'Review list of selected scholars published on official ONGC site.',
+    ],
+    deadlineInDays: 37,
+    officialUrl: 'https://ongcindia.com',
+    tags: ['PSU', 'SC/ST', 'Engineering', 'Government'],
+  },
+  // 20. Mahindra All-India UG (Almost #4)
+  {
+    id: 'mahindra-allindia-ug',
+    name: 'K. C. Mahindra All-India Engineering Merit Award',
+    provider: 'K. C. Mahindra Education Trust',
+    providerType: 'Foundation',
+    amount: 65000,
+    shortDescription: 'Annual scholarship for engineering undergraduates demonstrating strong scholastic record and need.',
+    plainSummary: 'A long-standing foundation grant that supports promising engineering students facing tuition constraints across premier Indian technical colleges.',
+    eligibility: {
+      levels: ['Undergraduate'],
+      courses: ['Engineering'],
+      maxIncomeBracket: '2.5L-5L',
+      minMarks: 75,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'income-certificate',
+      'marksheet',
+      'admission-proof',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Complete online registration on K.C. Mahindra Trust portal.',
+      'Upload academic records and letter of recommendation from college faculty.',
+      'Provide current family income certificate signed by revenue officer.',
+      'Shortlisted scholars undergo an online interview assessment.',
+    ],
+    deadlineInDays: 16,
+    officialUrl: 'https://kcmet.org',
+    tags: ['Mahindra', 'Engineering', 'Merit-Need', 'Foundation'],
+  },
+  // 21. Dr APJ Abdul Kalam Innovation (Needs under-2.5L income cert)
+  {
+    id: 'dr-apoj-kalam-ignite',
+    name: 'Dr. APJ Abdul Kalam Grassroots Tech Innovation Grant',
+    provider: 'National Innovation Foundation',
+    providerType: 'Government',
+    amount: 35000,
+    shortDescription: 'Special grant for underprivileged undergraduate tech students engaged in community solving engineering projects.',
+    plainSummary: 'Supports undergraduate engineering students from low-income families developing innovative hardware or software prototypes for rural communities.',
+    eligibility: {
+      maxIncomeBracket: 'under-2.5L',
+      courses: ['Engineering'],
+      levels: ['Undergraduate'],
+      minMarks: 60,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'income-certificate',
+      'marksheet',
+      'bonafide-certificate',
+    ],
+    howToApply: [
+      'Submit one-page project innovation summary on the NIF web portal.',
+      'Attach certified income proof showing family income under ₹2.5 Lakh.',
+      'Provide engineering department head endorsement letter.',
+      'Demonstrate prototype progress during remote presentation evaluation.',
+    ],
+    deadlineInDays: 42,
+    officialUrl: 'https://nif.org.in',
+    tags: ['Innovation', 'Low Income', 'Engineering', 'Government'],
+  },
+  // 22. National Means-cum-Merit School
+  {
+    id: 'national-means-merit',
+    name: 'National Means-cum-Merit School Scholarship (NMMSS)',
+    provider: 'Department of School Education and Literacy',
+    providerType: 'Government',
+    amount: 12000,
+    shortDescription: 'Centrally funded financial aid discouraging school dropouts in secondary classes.',
+    plainSummary: 'Provides annual stipends to students studying in class 9 through 12 in state government and local body secondary schools.',
+    eligibility: {
+      levels: ['School'],
+      maxIncomeBracket: '2.5L-5L',
+      minMarks: 55,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'income-certificate',
+      'marksheet',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Register for the state level NMMSS qualifying selection test.',
+      'Clear both mental ability and scholastic aptitude examination modules.',
+      'Submit verified parent income certificate to school headmaster.',
+      'Stipend transferred directly to verified student bank account.',
+    ],
+    deadlineInDays: 90,
+    officialUrl: 'https://scholarships.gov.in',
+    tags: ['School', 'Class 9-12', 'Central', 'Need-Based'],
+  },
+  // 23. AICTE Swanath PwD
+  {
+    id: 'aicte-swanath-pwd',
+    name: 'AICTE Swanath Scheme for Orphan and PwD Students',
+    provider: 'All India Council for Technical Education',
+    providerType: 'Government',
+    amount: 50000,
+    shortDescription: 'Special financial assistance for orphans, wards of martyred armed personnel, and students with disabilities.',
+    plainSummary: 'Dedicated AICTE initiative ensuring that vulnerable students and candidates with physical disabilities receive tuition relief throughout engineering study.',
+    eligibility: {
+      requiresDisability: true,
+      levels: ['Undergraduate', 'Diploma'],
+      courses: ['Engineering'],
+    },
+    requiredDocs: [
+      'aadhaar',
+      'disability-certificate',
+      'admission-proof',
+      'marksheet',
+      'bonafide-certificate',
+    ],
+    howToApply: [
+      'Submit application through the National Scholarship Portal under AICTE schemes.',
+      'Upload verified UDID card or competent authority disability certificate.',
+      'Get application verified by your engineering college nodal officer.',
+      'Track direct benefit disbursement status on the NSP portal.',
+    ],
+    deadlineInDays: 18,
+    officialUrl: 'https://www.aicte-india.org',
+    tags: ['AICTE', 'PwD', 'Special Welfare', 'Engineering'],
+  },
+  // 24. Delhi Minority
+  {
+    id: 'delhi-merit-minority',
+    name: 'Delhi State Post-Matric Minority Financial Grant',
+    provider: 'Department for Welfare of SC/ST/OBC/Minorities, Delhi',
+    providerType: 'State',
+    amount: 24000,
+    shortDescription: 'Delhi government educational reimbursement for students belonging to notified minority communities.',
+    plainSummary: 'Provides fee reimbursement and study allowance for college students residing in NCT of Delhi attending recognized higher education institutions.',
+    eligibility: {
+      states: ['Delhi'],
+      levels: ['Undergraduate', 'Postgraduate'],
+      maxIncomeBracket: '2.5L-5L',
+    },
+    requiredDocs: [
+      'aadhaar',
+      'domicile-certificate',
+      'income-certificate',
+      'marksheet',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Log into the e-District Delhi citizen portal with resident login.',
+      'Select Higher Education tuition assistance for minority students.',
+      'Upload Delhi voter card or domicile proof alongside academic records.',
+      'Track sanction order generated by the district welfare office.',
+    ],
+    deadlineInDays: 25,
+    officialUrl: 'https://edistrict.delhigovt.nic.in',
+    tags: ['Delhi', 'Minority', 'State', 'College'],
+  },
+  // 25. Tamil Nadu First Graduate
+  {
+    id: 'tamilnadu-firstgrad',
+    name: 'Tamil Nadu Chief Minister First Graduate Assistance',
+    provider: 'Government of Tamil Nadu',
+    providerType: 'State',
+    amount: 30000,
+    shortDescription: 'Complete tuition fee concession for first-generation graduates entering professional degree colleges.',
+    plainSummary: 'State government initiative paying full tuition fees for students who are the first in their family to complete a bachelor degree program in Tamil Nadu.',
+    eligibility: {
+      states: ['Tamil Nadu'],
+      requiresFirstGen: true,
+      levels: ['Undergraduate'],
+      courses: ['Engineering', 'Medical'],
+    },
+    requiredDocs: [
+      'aadhaar',
+      'domicile-certificate',
+      'admission-proof',
+      'bonafide-certificate',
+    ],
+    howToApply: [
+      'Obtain first-graduate certificate from the local Zonal Deputy Tahsildar.',
+      'Submit the certificate during TNEA engineering single-window counseling.',
+      'College deducts approved tuition fee directly at time of admission.',
+      'Verify status on the Tamil Nadu Higher Education portal.',
+    ],
+    deadlineInDays: 44,
+    officialUrl: 'https://www.tn.gov.in',
+    tags: ['Tamil Nadu', 'First Graduate', 'Tuition Waiver', 'State'],
+  },
+  // 26. ICAI Commerce
+  {
+    id: 'icai-commerce-foundation',
+    name: 'ICAI Commerce and Chartered Accountancy Foundation Grant',
+    provider: 'Institute of Chartered Accountants of India',
+    providerType: 'Foundation',
+    amount: 20000,
+    shortDescription: 'Need-based educational aid for undergraduate commerce students preparing for professional accounting credentials.',
+    plainSummary: 'Assists high-achieving commerce students with university fee coverage, study materials, and examination module subsidies.',
+    eligibility: {
+      courses: ['Commerce'],
+      levels: ['Undergraduate'],
+      maxIncomeBracket: '5L-8L',
+      minMarks: 65,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'marksheet',
+      'income-certificate',
+      'admission-proof',
+    ],
+    howToApply: [
+      'Apply online on the ICAI Student Support Services portal.',
+      'Provide current B.Com or allied commerce course enrollment receipt.',
+      'Attach certified income statement from employer or revenue office.',
+      'Direct grant transfer made to student upon committee approval.',
+    ],
+    deadlineInDays: 58,
+    officialUrl: 'https://www.icai.org',
+    tags: ['Commerce', 'Accounting', 'ICAI', 'Undergraduate'],
+  },
+  // 27. Bar Council Law
+  {
+    id: 'bar-council-law-fellowship',
+    name: 'Bar Council of India Emerging Jurist Fellowship',
+    provider: 'Bar Council of India Trust',
+    providerType: 'Foundation',
+    amount: 40000,
+    shortDescription: 'National fellowship aiding LLB students pursuing five-year and three-year legal education programmes.',
+    plainSummary: 'Designed to attract gifted young legal minds into advocacy. Provides tuition support and library book allowances for accredited law school students.',
+    eligibility: {
+      courses: ['Law'],
+      levels: ['Undergraduate'],
+      maxIncomeBracket: '5L-8L',
+      minMarks: 60,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'marksheet',
+      'bonafide-certificate',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Submit nomination through your law college dean or principal.',
+      'Enclose previous academic transcripts and CLAT/CET entrance scorecard.',
+      'Write a 500-word statement on constitutional jurisprudence interest.',
+      'Selection list announced on the Bar Council Trust official portal.',
+    ],
+    deadlineInDays: 62,
+    officialUrl: 'https://www.barcouncilofindia.org',
+    tags: ['Law', 'LLB', 'Legal Studies', 'Fellowship'],
+  },
+  // 28. AIIMS Medical Fellowship
+  {
+    id: 'aiims-medical-stipend',
+    name: 'National Healthcare & Medical Studies Fellowship',
+    provider: 'Ministry of Health and Family Welfare',
+    providerType: 'Government',
+    amount: 90000,
+    shortDescription: 'National scholarship supporting MBBS and BDS healthcare students undergoing undergraduate medical degrees.',
+    plainSummary: 'Provides substantial financial funding for clinical books, medical equipment, and annual university tuition for undergraduate healthcare students.',
+    eligibility: {
+      courses: ['Medical'],
+      levels: ['Undergraduate'],
+      maxIncomeBracket: '5L-8L',
+      minMarks: 65,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'admission-proof',
+      'marksheet',
+      'income-certificate',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Access the National Scholarship Portal Ministry of Health section.',
+      'Enter NEET ranking score and college admission allotment confirmation.',
+      'Upload attested academic records and income certificate.',
+      'Verify biometric KYC at the institutional dean administration office.',
+    ],
+    deadlineInDays: 30,
+    officialUrl: 'https://mohfw.gov.in',
+    tags: ['Medical', 'MBBS', 'Healthcare', 'Government'],
+  },
+  // 29. IIM Management
+  {
+    id: 'iim-cat-management',
+    name: 'National Young Managers Diversity Endowment',
+    provider: 'All India Management Association',
+    providerType: 'Private',
+    amount: 85000,
+    shortDescription: 'Tuition aid for postgraduate MBA students admitted to approved management institutions.',
+    plainSummary: 'Provides support to promising postgraduate business and management students from diverse backgrounds across Indian business schools.',
+    eligibility: {
+      courses: ['Management'],
+      levels: ['Postgraduate'],
+      maxIncomeBracket: '5L-8L',
+      minMarks: 65,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'admission-proof',
+      'marksheet',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Complete application on the AIMA management endowment portal.',
+      'Attach bachelor degree completion certificate and MBA admission receipt.',
+      'Submit family income affidavit verified by notary public.',
+      'Shortlisted applicants receive decision notification via email.',
+    ],
+    deadlineInDays: 75,
+    officialUrl: 'https://www.aima.in',
+    tags: ['Management', 'MBA', 'Postgraduate', 'Business'],
+  },
+  // 30. BHEL Heavy Industries Capstone
+  {
+    id: 'bhel-finalyear-capstone',
+    name: 'BHEL Final-Year Engineering Capstone Grant',
+    provider: 'Bharat Heavy Electricals Limited',
+    providerType: 'Government',
+    amount: 40000,
+    shortDescription: 'Project sponsorship for fourth-year engineering students designing power, energy, or electrical capstone projects.',
+    plainSummary: 'Awarded to final-year undergraduate engineering students to finance hardware components, testing, and prototype fabrication for capstone thesis projects.',
+    eligibility: {
+      courses: ['Engineering'],
+      levels: ['Undergraduate'],
+      years: [4],
+      minMarks: 65,
+    },
+    requiredDocs: [
+      'aadhaar',
+      'marksheet',
+      'bonafide-certificate',
+      'bank-passbook',
+    ],
+    howToApply: [
+      'Submit capstone project synopsis and team proposal on BHEL portal.',
+      'Attach faculty project supervisor recommendation letter.',
+      'Upload official transcript proving entry into final (4th) year of B.Tech.',
+      'Present project interim milestones to BHEL engineering evaluators.',
+    ],
+    deadlineInDays: 80,
+    officialUrl: 'https://www.bhel.com',
+    tags: ['Engineering', 'Final Year', 'Capstone', 'BHEL', 'PSU'],
+  },
 ];
-
-export const SCHOLARSHIPS: Scholarship[] = SCHOLARSHIPS_PART1;
